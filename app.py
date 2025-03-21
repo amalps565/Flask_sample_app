@@ -4,6 +4,7 @@ from flask_jwt_extended import JWTManager
 from flask import jsonify
 from flask_migrate import Migrate
 import secrets
+from dotenv import load_dotenv
 import os
 #models need to be imported before we initialize the SQLAlchemy extension.
 #Because SQLalchemy needs to know what tables and columns to create when we tell it to create our tables for us.
@@ -18,7 +19,7 @@ from resources.tag import blp as tag_blp
 from resources.user import blp as user_blp
 def create_app(db_url=None):
     app=Flask(__name__)
-
+    load_dotenv()
     app.config["PROPAGATE_EXCEPTIONS"]=True
     app.config["API_TITLE"]="Stores rest API"
     app.config["API_VERSION"]="1.0" 
