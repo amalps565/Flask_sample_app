@@ -47,16 +47,6 @@ class Item(MethodView):
         db.session.commit()
         
         return item
-        # item_data = request.get_json()
-        # try:
-        #     item = items[item_id]
-
-        #     # https://blog.teclado.com/python-dictionary-merge-update-operators/
-        #     item |= item_data
-        #     return item
-        # except KeyError:
-        #     abort(404, message="Item not found.")
-        
 
 
 @blp.route("/item")
@@ -72,16 +62,6 @@ class ItemList(MethodView):
     @blp.response(201,ItemSchema)
     def post(self,item_data):
         item_data = request.get_json()
-        # for item in items.values():
-        #     if (
-        #         item_data["name"] == item["name"]
-        #         and item_data["store_id"] == item["store_id"]
-        #     ):
-        #         abort(400, message=f"Item already exists.")
-
-        # item_id = uuid.uuid4().hex
-        # item = {**item_data, "id": item_id}
-        # items[item_id] = item
         item=ItemModel(**item_data)
         try:
             db.session.add(item)#we can add multiple items to the session
